@@ -1,7 +1,8 @@
 FROM archlinux/base
 
 RUN pacman -Syu --noconfirm base-devel clang gcc9 git llvm python3 ruby zsh
-RUN useradd -mG wheel -s /usr/bin/zsh -p password raviqqe
+RUN useradd -mG wheel -s /usr/bin/zsh raviqqe
+RUN passwd -d raviqqe
 
 USER raviqqe
 
