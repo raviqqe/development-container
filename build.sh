@@ -2,4 +2,4 @@
 
 set -e
 
-docker build -t raviqqe/development-container .
+docker build -t raviqqe/development .
