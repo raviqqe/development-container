@@ -20,4 +20,6 @@ WORKDIR /tmp/nodata
 
 EXPOSE 8080
 
-ENTRYPOINT python3 -m http.server 8080
+# TODO Somehow the following shell form does not work on Google Cloud Run.
+# ENTRYPOINT python3 -m http.server 8080
+ENTRYPOINT ["python3", "-m", "http.server", "8080"]
