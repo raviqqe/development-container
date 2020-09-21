@@ -7,8 +7,8 @@ USER raviqqe
 
 RUN git clone https://github.com/raviqqe/dotfiles ~/.dotfiles
 RUN cp ~/.dotfiles/profile ~/.profile
-RUN ~/.dotfiles/local/bin/update-homebrew
-RUN rcup -f
-RUN update
+RUN . ~/.profile && ~/.dotfiles/local/bin/update-homebrew
+RUN . ~/.profile && rcup -f
+RUN . ~/.profile && update
 
 ENTRYPOINT tail -f /dev/null
