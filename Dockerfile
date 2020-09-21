@@ -1,6 +1,6 @@
 FROM archlinux
 
-RUN pacman -Syu --noconfirm base-devel clang gcc9 git llvm ruby zsh
+RUN pacman -Syu --noconfirm base-devel clang gcc9 git llvm openssh zsh
 RUN useradd -mG wheel -s /usr/bin/zsh raviqqe
 RUN passwd -d raviqqe
 RUN sed -i 's/# \(%wheel.*NOPASSWD.*\)/\1/' /etc/sudoers
