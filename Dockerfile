@@ -11,4 +11,4 @@ RUN ~/.dotfiles/local/bin/update-homebrew
 RUN rcup -f
 RUN update
 
-CMD tail -f /dev/null
+ENTRYPOINT tail -f /dev/null
