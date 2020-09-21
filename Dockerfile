@@ -2,7 +2,9 @@ FROM archlinux/base
 
 RUN pacman -Syu --noconfirm base-devel clang gcc9 git llvm mosh python3 ruby zsh
 RUN useradd -mG wheel -s /usr/bin/zsh raviqqe
+RUN passwd -d raviqqe
 RUN sed -i 's/# \(%wheel.*NOPASSWD.*\)/\1/' /etc/sudoers
+RUN echo PermitEmptyPasswords yes >> /etc/ssh/sshd_config
 
 USER raviqqe
 
@@ -12,14 +14,12 @@ RUN . ~/.profile && ~/.dotfiles/local/bin/update-homebrew
 RUN . ~/.profile && rcup -f
 RUN . ~/.profile && update
 
-USER nobody
+USER root
 
-RUN mkdir /tmp/nodata
+RUN ssh-keygen -A
 
-WORKDIR /tmp/nodata
-
-EXPOSE 8080
+EXPOSE 22
 
 # TODO Somehow the following shell form does not work on Google Cloud Run.
-# ENTRYPOINT python3 -m http.server 8080
-ENTRYPOINT ["python3", "-m", "http.server", "8080"]
+# ENTRYPOINT foo bar
+ENTRYPOINT ["/usr/bin/sshd", "-D"]
