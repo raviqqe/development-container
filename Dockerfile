@@ -11,4 +11,12 @@ RUN . ~/.profile && ~/.dotfiles/local/bin/update-homebrew
 RUN . ~/.profile && rcup -f
 RUN . ~/.profile && update
 
-ENTRYPOINT tail -f /dev/null
+USER nobody
+
+RUN mkdir /tmp/nodata
+
+WORKDIR /tmp/nodata
+
+EXPOSE 8080
+
+ENTRYPOINT python3 -m http.server 8080
