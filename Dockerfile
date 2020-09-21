@@ -1,4 +1,4 @@
-FROM archlinux/base
+FROM archlinux
 
 RUN pacman -Syu --noconfirm base-devel clang gcc9 git llvm python3 ruby zsh
 RUN useradd -mG wheel -s /usr/bin/zsh raviqqe
